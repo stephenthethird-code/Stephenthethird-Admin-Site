@@ -786,6 +786,20 @@ init_auth(app)
 from extensions import register_extensions
 register_extensions(app)
 
+# ── Serve the built frontend (portfolio-site/dist) so one URL hosts everything ──
+DIST_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "portfolio-site", "dist"))
+
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve_frontend(path):
+    from flask import send_from_directory
+    if path.startswith(("api/", "covers/")) or not os.path.isdir(DIST_DIR):
+        abort(404)
+    full = os.path.normpath(os.path.join(DIST_DIR, path))
+    if path and full.startswith(DIST_DIR + os.sep) and os.path.isfile(full):
+        return send_from_directory(DIST_DIR, path)
+    return send_from_directory(DIST_DIR, "index.html")   # SPA fallback
+
 if __name__ == "__main__":
     init_db()
     print("🎛  S3 Studio OS backend running on http://localhost:5050")

@@ -76,3 +76,9 @@ cd .. && ./run_demo.sh      # runs the admin on the redacted copy
 
 The demo copy has no emails, phone numbers or notes and omits blacklisted contacts.
 Contacts are served only to logged-in users (they are no longer bundled into the site JS).
+
+## Sharing a live demo
+
+`./share_demo.sh` builds the site, serves it and the API from one port using the redacted demo
+database, and opens a temporary public `trycloudflare.com` link (needs `brew install cloudflared`).
+Give reviewers a demo login created with `create_user.py`; stop the script to revoke the link.

@@ -34,7 +34,8 @@ export function installAuthFetch(onUnauthorized) {
   const orig = window.fetch.bind(window);
   window.fetch = async (input, init = {}) => {
     const url = typeof input === "string" ? input : input.url;
-    const isApi = url.startsWith(API_BASE) || url.startsWith("/api");
+    // Only attach the token to our own API (never to third-party URLs).
+    const isApi = url.startsWith("/api") || (API_BASE !== "" && url.startsWith(API_BASE));
     if (!isApi) return orig(input, init);
 
     const token = getToken();
