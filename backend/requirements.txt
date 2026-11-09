@@ -1,0 +1,9 @@
+flask>=3.0
+flask-cors>=4.0
+python-dotenv>=1.0
+mutagen>=1.47
+dropbox>=11.36
+google-auth>=2.28
+google-auth-oauthlib>=1.2
+google-api-python-client>=2.120
+# Optional audio analysis: pip install librosa soundfile numpy

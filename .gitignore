@@ -1,0 +1,25 @@
+# secrets & local data
+.env
+.env.*
+!.env.example
+*.db
+*.db-wal
+*.db-shm
+gdrive_token.json
+gmail_token.json
+credentials.json
+backend/uploads/
+private/
+
+# dependencies / build
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+dist/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+.secret_key
